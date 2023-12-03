@@ -14,7 +14,7 @@ ___
 
 - allocated resources to the VM and basic networking settings
 	- `NETWORK_ADAPTER="nat"` is not optimal for ssh
-
+ 	- internet connection shared from host
 ```
 #!/bin/bash
 #VIRTUALBOX, VM
