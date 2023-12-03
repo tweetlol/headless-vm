@@ -3,12 +3,12 @@
 ___
 ### prequisites:
 - fresh Ubuntu (tested on 23.10.1-desktop)
-- installed VirtualBox 7.0.10
+- installed VirtualBox 7.0.10  
 	`sudo apt install VirtualBox`
 - either of:
 	- internet connection to download the ubuntu image file on the fly
 	- downloaded ubuntu image file renamed to ubuntu.iso in the working directory  
-	https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.iso
+	`wget --show-progress -O ubuntu.iso https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.iso`
 
 ___
 
