@@ -29,13 +29,14 @@ ISO_LINK="https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd"
 # UI
 echo "virtual machine name?:"
 read MACHINENAME
-echo "creating $MACHINENAME, download $ISO_LINK"
+echo "creating $MACHINENAME" 
+echo "download $ISO_LINK"
 echo "as .iso image file [y/n]?:"
 read DOWNLOAD
 
 if [ "$DOWNLOAD" = "y" ]; then
 	echo "downloading $ISO_LINK"
-	echo "as ubuntu.iso and proceeding to setup a VM all the way up to OS install, use Remmina"
+	echo "into ./ubuntu.iso..."
 	wget -O ubuntu.iso --show-progress $ISO_LINK
 fi
 
@@ -43,7 +44,7 @@ fi
 if [ ! -f ./ubuntu.iso ]; then
 	echo "./ubuntu.iso not found, quitting..."
 else
-	echo "./ubuntu.iso found, creating vm..."
+	echo "./ubuntu.iso found, creating vm $MACHINENAME..."
 
 # CREATE VM
 	VBoxManage createvm --name $MACHINENAME --ostype "Ubuntu_64" --register --basefolder `pwd`
@@ -70,7 +71,8 @@ else
 	VBoxManage modifyvm $MACHINENAME --vrdeproperty VNCPassword=$PASSWORD
 
 # START THE THING
-	echo "setup done, starting $MACHINENAME at port $PORT..."
-	VBoxHeadless --startvm $MACHINENAME
+	echo "setup done, starting $MACHINENAME..."
+	VBoxHeadless --startvm $MACHINENAME &
+ 	echo "success: virtual machine $MACHINENAME running! vrde port $PORT"
 fi
 
