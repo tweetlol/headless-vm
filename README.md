@@ -7,8 +7,9 @@ ___
 	`sudo apt install VirtualBox`
 - either of:
 	- internet connection to download the ubuntu image file on the fly
-	- downloaded ubuntu image file renamed to ubuntu.iso in the working directory
-	[https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.iso]
+	- downloaded ubuntu image file renamed to ubuntu.iso in the working directory  
+	https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.iso
+
 ___
 
 - allocated resources to the VM and basic networking settings
