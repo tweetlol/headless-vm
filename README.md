@@ -2,7 +2,7 @@
 ### setup a headless VM on ubuntu server to use with Remmina VNC (with VirtualBox)
 ___
 ### prequisites:
-- frest Ubuntu (tested on 23.10.1-desktop)
+- fresh Ubuntu (tested on 23.10.1-desktop)
 - installed VirtualBox 7.0.10
 	`sudo apt install VirtualBox`
 - either of:
