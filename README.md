@@ -1,5 +1,5 @@
 
-# **setup a headless VM on ubuntu server to use with Remmina VNC (with VirtualBox)**
+# setup a headless VM on ubuntu server to use with Remmina VNC (VirtualBox)
 ___
 ### prequisites:
 - fresh Ubuntu (tested on 23.10.1-desktop)
