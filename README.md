@@ -12,7 +12,7 @@ ___
 ___
 
 - allocated resources to the VM and basic networking settings
-	- NETWORK_ADAPTER="nat" is not optimal for ssh
+	- `NETWORK_ADAPTER="nat"` is not optimal for ssh
 - `ISO_LINK` determines .iso image to be downloaded and installed, shoule you choose to 'y'
 
 ```
