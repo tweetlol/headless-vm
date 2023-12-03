@@ -30,7 +30,7 @@ PORT=10001
 #.ISO IMAGE LINK
 ISO_LINK="https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd"
 ```
-- `ISO_LINK` determines .iso image to be downloaded and installed, should you choose to `y`
+- `$ISO_LINK` determines .iso image to be downloaded and installed, should you choose to `y`
 - script proceeds to ask for a desired machine name and if you want to download an imagefile from `$ISO_LINK`
 
 ```
