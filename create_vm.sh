@@ -18,7 +18,7 @@ NETWORK_ADAPTER="nat"
 PORT=10001
 
 # .ISO IMAGE LINK
-ISO_LINK="https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd"
+ISO_LINK="https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.iso"
 
 #################################################
 
