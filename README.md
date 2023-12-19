@@ -13,8 +13,7 @@ ___
 ___
 ### the script:
 - allocated resources to the VM and basic networking settings
-	- `NETWORK_ADAPTER="nat"` is not optimal for ssh
- 	- internet connection shared from host
+- internet connection shared from host
 ```
 #################################################
 
@@ -36,6 +35,7 @@ PORT=10001
 # .ISO IMAGE LINK
 ISO_LINK="https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd"
 ```
+
 - `$ISO_LINK` determines .iso image to be downloaded and installed, should you choose to `y`
 - script proceeds to ask for a desired machine name, and if you want to download an imagefile from `$ISO_LINK`
 
@@ -102,3 +102,12 @@ fi
 ```
 
 - connect to VM remotely using Remmina VNC to `localhost:$PORT` (default `PORT=10001`)
+
+___
+### optional: ssh access
+- `NETWORK_ADAPTER="nat"` is not optimal for ssh
+- `VBoxManage modifyvm $MACHINENAME --nic1 bridged` set network adapter to "bridged"
+- `VBoxManage modifyvm $MACHINENAME --bridgeadapter1 $HOSTADAPTER` bridge to your host adapter (ex. enp1s0f0, `ip a` to find out)
+- reboot, the machine should now be accessible across your local network behind it's own IP address
+___
+
