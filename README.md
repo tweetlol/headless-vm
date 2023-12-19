@@ -104,7 +104,7 @@ fi
 - connect to VM remotely using Remmina VNC to `localhost:$PORT` (default `PORT=10001`)
 
 ___
-### optional: ssh access
+### ssh access (optional):
 - `NETWORK_ADAPTER="nat"` is not optimal for ssh
 - `VBoxManage modifyvm $MACHINENAME --nic1 bridged` set network adapter to "bridged"
 - `VBoxManage modifyvm $MACHINENAME --bridgeadapter1 $HOSTADAPTER` bridge to your host adapter (ex. enp1s0f0, `ip a` to find out)
