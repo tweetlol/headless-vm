@@ -30,7 +30,7 @@ ISO_LINK="https://releases.ubuntu.com/22.04.3/$ISO_FILE"
 # UI
 echo "virtual machine name?:"
 read MACHINENAME
-echo "creating $MACHINENAME" 
+echo "creating $MACHINENAME"
 echo "download $ISO_LINK"
 echo "as .iso image file [y/n]?:"
 read DOWNLOAD
