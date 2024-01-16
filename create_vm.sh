@@ -37,15 +37,14 @@ read DOWNLOAD
 
 if [ "$DOWNLOAD" = "y" ]; then
 	echo "downloading $ISO_LINK"
-	echo "into ./ubuntu.iso..."
-	wget -O ubuntu.iso --show-progress $ISO_LINK
+	wget -O $ISO_FILE --show-progress $ISO_LINK
 fi
 
 # CHECK FOR .ISO
 if [ ! -f ./ubuntu.iso ]; then
-	echo "./ubuntu.iso not found, quitting..."
+	echo "$ISO_FILE not found, quitting..."
 else
-	echo "./ubuntu.iso found, creating vm $MACHINENAME..."
+	echo "$ISO_FILE found, creating vm $MACHINENAME..."
 
 # CREATE VM
 	VBoxManage createvm --name $MACHINENAME --ostype "Ubuntu_64" --register --basefolder `pwd`
