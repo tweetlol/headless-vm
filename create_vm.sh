@@ -7,9 +7,9 @@
 #################################################
 
 # HW PROPERTIES
-MEMORY="1024"
+MEMORY="2024"
 CPUS="2"
-DISK_SIZE_GB="15" #IN GB
+DISK_SIZE_GB="25" #IN GB
 DISK_SIZE_MB=$((DISK_SIZE_GB * 1000))
 DISK_FORMAT="VDI"
 
@@ -18,7 +18,8 @@ NETWORK_ADAPTER="nat"
 PORT=10001
 
 # .ISO IMAGE LINK
-ISO_LINK="https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.iso"
+ISO_FILE="ubuntu-22.04.3-live-server-amd64.iso"
+ISO_LINK="https://releases.ubuntu.com/22.04.3/$ISO_FILE"
 
 #################################################
 
