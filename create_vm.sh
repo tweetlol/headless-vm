@@ -7,9 +7,9 @@
 #################################################
 
 # HW PROPERTIES
-MEMORY="2024"
+MEMORY="1024"
 CPUS="2"
-DISK_SIZE_GB="25" #IN GB
+DISK_SIZE_GB="15" #IN GB
 DISK_SIZE_MB=$((DISK_SIZE_GB * 1000))
 DISK_FORMAT="VDI"
 

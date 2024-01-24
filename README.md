@@ -11,9 +11,12 @@ ___
 	`wget --show-progress -O ubuntu.iso https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.iso`
 
 ___
+
 ### the script:
+
 - allocated resources to the VM and basic networking settings
 - internet connection shared from host
+
 ```
 #################################################
 
@@ -33,7 +36,8 @@ NETWORK_ADAPTER="nat"
 PORT=10001
 
 # .ISO IMAGE LINK
-ISO_LINK="https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd"
+ISO_FILE="ubuntu-22.04.3-live-server-amd64.iso"
+ISO_LINK="https://releases.ubuntu.com/22.04.3/$ISO_FILE"
 ```
 
 - `$ISO_LINK` determines .iso image to be downloaded and installed, should you choose to `y`
@@ -56,33 +60,32 @@ read DOWNLOAD
 
 if [ "$DOWNLOAD" = "y" ]; then
         echo "downloading $ISO_LINK"
-        echo "into ./ubuntu.iso..."
-        wget -O ubuntu.iso --show-progress $ISO_LINK
+        wget -O $ISO_FILE --show-progress $ISO_LINK
 fi
 
 # CHECK FOR .ISO
 if [ ! -f ./ubuntu.iso ]; then
-        echo "./ubuntu.iso not found, quitting..."
+        echo "$ISO_FILE not found, quitting..."
 else
-        echo "./ubuntu.iso found, creating vm $MACHINENAME..."
+        echo "$ISO_FILE found, creating vm $MACHINENAME..."
 ```
 
-- check for ubuntu.iso in current directory, if found proceed to setup and start the VM
+- check for `$ISO_FILE` in current directory, if found proceed to setup and start the VM
 
 ```
 # CREATE VM
-        VBoxManage createvm --name $MACHINENAME --ostype "Ubuntu_64" --register --basefolder >
+        VBoxManage createvm --name $MACHINENAME --ostype "Ubuntu_64" --register --basefolder `pwd`
 
 # SET RAM AND NETWORK ADAPTER (CHANGE NETWORK ADAPTER FOR SSH ACCESS LATER - bridge?)
         VBoxManage modifyvm $MACHINENAME --memory $MEMORY --cpus $CPUS
         VBoxManage modifyvm $MACHINENAME --nic1 $NETWORK_ADAPTER
 
 # CREATE HDD AND CONNECT UBUNTU.ISO
-        VBoxManage createhd --filename `pwd`/$MACHINENAME/$MACHINENAME-disk.vdi --size $DISK_>
+        VBoxManage createhd --filename `pwd`/$MACHINENAME/$MACHINENAME-disk.vdi --size $DISK_SIZE_MB --format $DISK_FORMAT
         VBoxManage storagectl $MACHINENAME --name "SATA Controller" --add sata
-        VBoxManage storageattach $MACHINENAME --storagectl "SATA Controller" --port 0 --devic>
+        VBoxManage storageattach $MACHINENAME --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium `pwd`/$MACHINENAME/$MACHINENAME-disk.vdi
         VBoxManage storagectl $MACHINENAME --name "IDE Controller" --add ide
-        VBoxManage storageattach $MACHINENAME --storagectl "IDE Controller" --port 1 --device>
+        VBoxManage storageattach $MACHINENAME --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium `pwd`/ubuntu.iso
         VBoxManage modifyvm $MACHINENAME --boot1 dvd --boot2 disk --boot3 none --boot4 none
 
 # ENABLE REMOTE DESKTOP PROTOCOL AT PORT 10001
@@ -104,10 +107,12 @@ fi
 - connect to VM remotely using Remmina VNC to `localhost:$PORT` (default `PORT=10001`)
 
 ___
+
 ### ssh access (optional):
+
 - `NETWORK_ADAPTER="nat"` is not optimal for ssh
 - `VBoxManage modifyvm $MACHINENAME --nic1 bridged` set network adapter to "bridged"
 - `VBoxManage modifyvm $MACHINENAME --bridgeadapter1 $HOSTADAPTER` bridge to your host adapter (ex. enp1s0f0, `ip a` to find out)
 - reboot, the machine should now be accessible across your local network behind it's own IP address
-___
 
+___
