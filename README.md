@@ -1,18 +1,16 @@
-
 # setup a headless VM on ubuntu server to use with Remmina VNC (VirtualBox)
+
 ___
-### prequisites:
+
+## prequisites
+
 - fresh Ubuntu (tested on 23.10.1-desktop)
-- installed VirtualBox 7.0.10  
-	`sudo apt install VirtualBox`
-- either of:
-	- internet connection to download the ubuntu image file on the fly
-	- downloaded ubuntu image file renamed to ubuntu.iso in the working directory  
-	`wget --show-progress -O ubuntu.iso https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.iso`
+- installed VirtualBox 7.0.10:
+`sudo apt install VirtualBox`
 
 ___
 
-### the script:
+## the script
 
 - allocated resources to the VM and basic networking settings
 - internet connection shared from host
@@ -108,7 +106,7 @@ fi
 
 ___
 
-### ssh access (optional):
+## ssh access (optional)
 
 - `NETWORK_ADAPTER="nat"` is not optimal for ssh
 - `VBoxManage modifyvm $MACHINENAME --nic1 bridged` set network adapter to "bridged"
