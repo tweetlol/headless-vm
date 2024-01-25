@@ -1,4 +1,4 @@
-# setup a headless VM on ubuntu server to use with Remmina VNC (VirtualBox)
+# setup a headless VM (VirtualBox) on ubuntu server to use with Remmina VNC
 
 ___
 
