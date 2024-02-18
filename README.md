@@ -4,7 +4,10 @@
 
 - fresh Ubuntu (tested on 23.10.1-desktop)
 - installed VirtualBox 7.0.10:
-`sudo apt install VirtualBox`
+
+```sh
+sudo apt install VirtualBox
+```
 
 ## the script
 
