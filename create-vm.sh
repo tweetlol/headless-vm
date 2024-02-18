@@ -7,9 +7,9 @@
 #################################################
 
 # HW PROPERTIES
-MEMORY="1024"
-CPUS="2"
-DISK_SIZE_GB="15" #IN GB
+MEMORY="4096"
+CPUS="8"
+DISK_SIZE_GB="20" #IN GB
 DISK_SIZE_MB=$((DISK_SIZE_GB * 1000))
 DISK_FORMAT="VDI"
 
@@ -41,7 +41,7 @@ if [ "$DOWNLOAD" = "y" ]; then
 fi
 
 # CHECK FOR .ISO
-if [ ! -f ./ubuntu.iso ]; then
+if [ ! -f ./$ISO_FILE ]; then
 	echo "$ISO_FILE not found, quitting..."
 else
 	echo "$ISO_FILE found, creating vm $MACHINENAME..."
@@ -58,7 +58,7 @@ else
 	VBoxManage storagectl $MACHINENAME --name "SATA Controller" --add sata
 	VBoxManage storageattach $MACHINENAME --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium  `pwd`/$MACHINENAME/$MACHINENAME-disk.vdi
 	VBoxManage storagectl $MACHINENAME --name "IDE Controller" --add ide
-	VBoxManage storageattach $MACHINENAME --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium `pwd`/ubuntu.iso
+	VBoxManage storageattach $MACHINENAME --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium `pwd`/$ISO_FILE
 	VBoxManage modifyvm $MACHINENAME --boot1 dvd --boot2 disk --boot3 none --boot4 none
 
 # ENABLE REMOTE DESKTOP PROTOCOL AT PORT 10001
@@ -70,9 +70,7 @@ else
 	read PASSWORD
 	VBoxManage modifyvm $MACHINENAME --vrdeproperty VNCPassword=$PASSWORD
 
-# START THE THING
-	echo "setup done, starting $MACHINENAME..."
-	VBoxHeadless --startvm $MACHINENAME &
- 	echo "success: virtual machine $MACHINENAME running! vrde port $PORT"
+# SETUP DONE
+	echo "setup done, start $MACHINENAME with start-vm.sh"
 fi
 
